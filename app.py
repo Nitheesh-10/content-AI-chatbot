@@ -135,11 +135,11 @@ selected_model = st.sidebar.selectbox(
 
 
 # Load LLM 
-if api_key:
-        LLM = ChatGroq(
-            api_key=api_key,
-            model=selected_model,
-            temperature=1
+
+LLM = ChatGroq(
+        api_key=api_key,
+         model=selected_model,
+        temperature=1
         )
 
 
