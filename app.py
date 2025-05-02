@@ -186,35 +186,37 @@ st.caption("Ask me to help write blog intros, social media captions, or article 
 
 # Chat messages UI
 query=st.chat_input("chat here")
-
-if query:
-    try:
-        human_message = HumanMessage(content=query)
-        st.session_state.chat_history.append(human_message)
-
-        with st.spinner("Hi i am Sansa ... 💗💗💗"):
-            response = LLM.invoke(st.session_state.chat_history)
-            result = response.content
-
-        if result:
-            ai_message = AIMessage(content=result)
-            st.session_state.chat_history.append(ai_message)
-
-        # Display all chat messages
-        st.markdown("<div class='chat-container'>", unsafe_allow_html=True)
-        for message in st.session_state.chat_history:
-            if isinstance(message, HumanMessage):
-                st.markdown(f"<div class='chat-message user-message'>👤 You: {message.content}</div>", unsafe_allow_html=True)
-            elif isinstance(message, AIMessage):
-                st.markdown(f"<div class='chat-message ai-message'> 💗 Sansa : {message.content}</div>", unsafe_allow_html=True)
-        st.markdown("</div>", unsafe_allow_html=True)
-
-        # Limit message history
-        st.session_state.chat_history = st.session_state.chat_history[-100:]
-
-    except Exception as e:
-        st.error(f"Error: {str(e)}")
-        st.markdown("<div class='chat-message ai-message'>ROCKY: Oops! Something went wrong. Try again 💬</div>", unsafe_allow_html=True)
+if api_key:
+        if query:
+            try:
+                human_message = HumanMessage(content=query)
+                st.session_state.chat_history.append(human_message)
+        
+                with st.spinner("Hi i am Sansa ... 💗💗💗"):
+                    response = LLM.invoke(st.session_state.chat_history)
+                    result = response.content
+        
+                if result:
+                    ai_message = AIMessage(content=result)
+                    st.session_state.chat_history.append(ai_message)
+        
+                # Display all chat messages
+                st.markdown("<div class='chat-container'>", unsafe_allow_html=True)
+                for message in st.session_state.chat_history:
+                    if isinstance(message, HumanMessage):
+                        st.markdown(f"<div class='chat-message user-message'>👤 You: {message.content}</div>", unsafe_allow_html=True)
+                    elif isinstance(message, AIMessage):
+                        st.markdown(f"<div class='chat-message ai-message'> 💗 Sansa : {message.content}</div>", unsafe_allow_html=True)
+                st.markdown("</div>", unsafe_allow_html=True)
+        
+                # Limit message history
+                st.session_state.chat_history = st.session_state.chat_history[-100:]
+        
+            except Exception as e:
+                st.error(f"Error: {str(e)}")
+                st.markdown("<div class='chat-message ai-message'>💗 Sansa: Oops! Something went wrong. Try again 💬</div>", unsafe_allow_html=True)
+else:
+        print("load your api key")
 
 
 # Clear chat button
