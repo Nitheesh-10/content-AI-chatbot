@@ -140,6 +140,8 @@ if api_key:
         model=selected_model,
         temperature=1
     )
+else:
+        print("load your API key")
 
 
 
