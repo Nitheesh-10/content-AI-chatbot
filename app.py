@@ -119,7 +119,12 @@ warnings.filterwarnings("ignore")
 
 
 api_key = st.sidebar.text_input("Enter your API Key:", type="password")
-
+if api_key:
+        LLM = ChatGroq(
+                api_key=api_key,
+                 model=selected_model,
+                temperature=1
+ )
 
 
 
@@ -134,12 +139,6 @@ selected_model = st.sidebar.selectbox(
 
 
 # Load LLM 
-
-LLM = ChatGroq(
-        api_key=api_key,
-         model=selected_model,
-        temperature=1
-        )
 
 
 
