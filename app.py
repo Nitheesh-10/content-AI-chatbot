@@ -116,7 +116,6 @@ import warnings
 # Environment setup
 load_dotenv()
 warnings.filterwarnings("ignore")
-api_key = os.getenv("Groq_api_key")
 
 
 api_key = st.sidebar.text_input("Enter your API Key:", type="password")
