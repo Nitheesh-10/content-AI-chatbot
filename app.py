@@ -212,7 +212,7 @@ if query:
                 # Limit message history
                 st.session_state.chat_history = st.session_state.chat_history[-100:]
         
-            except Exception as e:
+        except Exception as e:
                 st.success("load your api key")
 
 
