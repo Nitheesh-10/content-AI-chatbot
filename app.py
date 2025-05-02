@@ -186,9 +186,9 @@ st.caption("Ask me to help write blog intros, social media captions, or article 
 
 # Chat messages UI
 query=st.chat_input("chat here")
-if api_key:
-        if query:
-            try:
+
+if query:
+        try:
                 human_message = HumanMessage(content=query)
                 st.session_state.chat_history.append(human_message)
         
@@ -213,10 +213,8 @@ if api_key:
                 st.session_state.chat_history = st.session_state.chat_history[-100:]
         
             except Exception as e:
-                st.error(f"Error: {str(e)}")
-                st.markdown("<div class='chat-message ai-message'>💗 Sansa: Oops! Something went wrong. Try again 💬</div>", unsafe_allow_html=True)
-else:
-        print("load your api key")
+                st.success("load your api key")
+
 
 
 # Clear chat button
